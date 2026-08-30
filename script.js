@@ -38,7 +38,127 @@ console.log("CUSTOMER_ID:", CUSTOMER_ID);
 if (!CUSTOMER_ID) {
   console.error("❌ Customer ID missing from URL");
 }
+/* ==================== CUSTOMER DATA ==================== */
 
+async function loadCustomerData() {
+
+  if (!CUSTOMER_ID) return;
+
+  try {
+
+    const { data: customer, error } =
+  await supabaseClient
+    .rpc("get_customer", {
+      p_customer_id: CUSTOMER_ID
+    });
+
+    if (error) {
+      console.error("❌ Customer data error:", error);
+      console.error("Full error:", JSON.stringify(error, null, 2));
+      return;
+    }
+
+    console.log("✅ Customer data loaded:", customer);
+
+
+    // Customer Name
+    const nameEl =
+      document.getElementById("customer-name");
+
+    if (nameEl) {
+      nameEl.textContent =
+        customer.customer_name || "";
+    }
+
+
+    // First Letter
+    if (Array.isArray(customer.first_letter)) {
+
+      customer.first_letter.forEach(
+        (text, index) => {
+
+          const el =
+            document.getElementById(
+              `firstLetter-line${index + 1}`
+            );
+
+          if (el) {
+            el.textContent = text;
+          }
+
+        }
+      );
+
+    }
+    // Memory Dates
+if (Array.isArray(customer.memory_dates)) {
+
+    document
+        .querySelectorAll("[data-memory-date]")
+        .forEach(el => {
+
+            const number =
+                Number(el.dataset.memoryDate);
+
+            if (customer.memory_dates[number - 1]) {
+                el.textContent =
+                    customer.memory_dates[number - 1];
+            }
+
+        });
+}
+
+
+// Memory Captions
+if (Array.isArray(customer.memory_captions)) {
+
+    document
+        .querySelectorAll("[data-memory-caption]")
+        .forEach(el => {
+
+            const number =
+                Number(el.dataset.memoryCaption);
+
+            if (customer.memory_captions[number - 1]) {
+                el.textContent =
+                    customer.memory_captions[number - 1];
+            }
+
+        });
+}
+
+
+    // Final Letter
+    if (Array.isArray(customer.final_letter)) {
+
+      customer.final_letter.forEach(
+        (text, index) => {
+
+          const el =
+            document.getElementById(
+              `finalLetter-line${index + 1}`
+            );
+
+          if (el) {
+            el.textContent = text;
+          }
+
+        }
+      );
+
+    }
+
+  } catch (err) {
+
+    console.error(
+      "❌ Customer loading error:",
+      err
+    );
+
+  }
+}
+
+loadCustomerData();
 
 /* ==================== PHOTO URL ==================== */
 
@@ -2214,15 +2334,7 @@ musicPlayer.loadMusic();
 
       'M2.jpg','S5.jpg',
 
-      'S2.jpg','S6.jpg',
-
-      'O2.jpg','M7.jpg',
-
-      'S3.jpg','S7.jpg',
-
-      'W3.jpg',
-
-      'M3.jpg',
+      'S2.jpg','S6.jpg'
 
     ];
 
@@ -2463,7 +2575,7 @@ musicPlayer.loadMusic();
 
 
               const dist =
-                90 +
+                180;
                 Math.random() *
                   160;
 
