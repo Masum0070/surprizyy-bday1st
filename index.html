@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>A Little Something For You</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Background particles -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- Chapter navigation -->
+  <nav
+    class="chapter-nav"
+    id="chapter-nav"
+    aria-label="Chapter progress">
+  </nav>
+
+  <!-- Music -->
+  <button
+    class="music-toggle"
+    id="music-toggle"
+    aria-label="Play or pause music">
+    ♪
+  </button>
+
+  <audio
+    id="bg-music"
+    src=""
+    loop
+    preload="none">
+  </audio>
+
+
+  <main id="chapters">
+
+
+    <!-- =====================================================
+         CHAPTER 1 — INTRO
+    ====================================================== -->
+
+    <section
+      class="chapter"
+      id="chapter-intro"
+      data-tint="wine">
+
+      <div class="bg-layer"></div>
+
+      <div class="bokeh" aria-hidden="true">
+
+        <span
+          style="
+            width:120px;
+            height:120px;
+            top:12%;
+            left:15%;
+            animation-delay:0s;
+          ">
+        </span>
+
+        <span
+          style="
+            width:80px;
+            height:80px;
+            top:65%;
+            left:80%;
+            animation-delay:3s;
+          ">
+        </span>
+
+        <span
+          style="
+            width:60px;
+            height:60px;
+            top:80%;
+            left:20%;
+            animation-delay:6s;
+          ">
+        </span>
+
+      </div>
+
+
+      <div class="content-inner">
+
+        <div class="glass-card">
+
+          <svg
+            class="ornament"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true">
+
+            <path
+              d="M12 21s-7.2-4.6-10-9.3C.4 8.6 2 5 5.4 5c2 0 3.4 1.1 4.1 2.4C10.2 6.1 11.6 5 13.6 5 17 5 18.6 8.6 17 11.7 14.2 16.4 7 21 7 21z">
+            </path>
+
+          </svg>
+
+          <span class="eyebrow reveal-line">
+            A little something for you
+          </span>
+
+          <h1 class="reveal-line">
+            I made something for you.
+          </h1>
+
+          <p class="reveal-line">
+            Just for you. Just because.
+          </p>
+
+          <p class="intro-promise reveal-line">
+            But before you continue&hellip;<br>
+            promise me you'll go through<br>
+            every chapter until the very end.
+          </p>
+
+          <button
+            class="btn-lux reveal-line"
+            data-next="letter">
+            Open Your Surprise
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAPTER 2 — LETTER
+    ====================================================== -->
+
+    <section
+      class="chapter"
+      id="chapter-letter"
+      data-tint="burgundy">
+
+      <button
+        class="back-btn"
+        onclick="nav.goTo('intro')">
+        ← Back
+      </button>
+
+      <div class="bg-layer"></div>
+
+      <div class="content-inner">
+
+        <span class="eyebrow reveal-line">
+              Scratch It 
+        </span>
+
+        <h2
+          class="reveal-line"
+          style="margin-bottom:26px;">
+          A letter I wanted you to read&hellip;
+        </h2>
+
+
+        <div class="envelope-wrap">
+
+          <div
+            class="envelope"
+            id="envelope"
+            role="button"
+            tabindex="0"
+            aria-label="Scratch to open the envelope">
+
+            <div class="envelope-body">
+
+              <div class="envelope-ribbon"></div>
+
+              <div class="envelope-flap"></div>
+
+              <div class="wax-seal">
+                ♥
+              </div>
+
+            </div>
+
+            <canvas
+              class="scratch-canvas"
+              id="scratch-canvas">
+            </canvas>
+
+            <div
+              class="scratch-hint"
+              id="scratch-hint">
+              scratch the seal
+            </div>
+
+          </div>
+
+
+          <div
+            class="letter-paper"
+            id="letter-paper">
+
+            <p class="reveal-line">
+              Happiest Birthday Poplie ❤️ ❤️
+            </p>
+
+            <p class="reveal-line">
+              I could have simply wished you a happy birthday,
+              but somehow, that didn't feel special enough.&hellip;
+            </p>
+
+            <p class="reveal-line">
+              But you deserve something a little more special.
+              I could have simply wished you a happy birthday…
+            </p>
+
+            <p class="reveal-line">
+              
+              And I wanted to turn a few of those moments
+              into something you can revisit with a smile.
+            </p>
+
+            <p class="reveal-line">
+              They all mean something to me.
+              
+            </p>
+
+            <p class="reveal-line sign">
+             Made especially for your special day. ✨Now, your little surprise begins… ❤️
+            </p>
+
+          </div>
+
+
+          <button
+            class="btn-lux next-chapter-btn reveal-line"
+            data-next="wishes"
+            style="margin-top:30px;">
+            Continue
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAPTER 3 — BIRTHDAY WISHES
+    ====================================================== -->
+
+    <section
+      class="chapter"
+      id="chapter-wishes"
+      data-tint="rose">
+
+      <button
+        class="back-btn"
+        onclick="nav.goTo('letter')">
+        ← Back
+      </button>
+
+      <div class="bg-layer"></div>
+
+      <div class="content-inner">
+
+        <div class="carousel-shell">
+
+          <span class="eyebrow reveal-line">
+            Chapter ONE
+          </span>
+
+          <h2 class="carousel-title reveal-line">
+           ❤️ Specially for You ❤️
+          </h2>
+
+          <div
+            class="coverflow"
+            id="wishes-carousel"
+            aria-label="Birthday wishes photos">
+          </div>
+
+          <p class="cf-hint reveal-line">
+            tap a photo to bring it forward
+            &middot;
+            tap again to open
+          </p>
+
+          <button
+            class="btn-lux next-chapter-btn reveal-line"
+            data-next="memories"
+            style="margin-top:30px;">
+            Continue
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAPTER 4 — OUR MEMORIES
+    ====================================================== -->
+
+    <section
+      class="chapter"
+      id="chapter-memories"
+      data-tint="plum">
+
+      <button
+        class="back-btn"
+        onclick="nav.goTo('wishes')">
+        ← Back
+      </button>
+
+      <div class="bg-layer"></div>
+
+      <div
+        class="content-inner"
+        style="max-width:820px;">
+
+        <span class="eyebrow reveal-line">
+          Chapter TWO
+        </span>
+
+        <h2
+          class="reveal-line"
+          style="margin-bottom:34px;">
+          Our Memories
+        </h2>
+
+
+        <div class="polaroid-grid reveal-line">
+
+
+          <!-- Memory 1 -->
+
+          <figure
+            class="polaroid"
+            data-img="O1.jpg"
+            data-caption="That beautiful day.">
+
+            <div class="frame">
+
+              <img
+                src=""
+                alt="A memory"
+                loading="lazy"
+                <img src="" alt="A memory" loading="lazy">
+                ">
+
+            </div>
+
+            <figcaption>
+
+              <span class="date">
+                14 August 2025
+              </span>
+
+              <div class="caption">
+                That beautiful day.
+              </div>
+
+            </figcaption>
+
+          </figure>
+
+
+
+          <!-- Memory 2 -->
+
+          <figure
+            class="polaroid"
+            data-img="O2.jpg"
+            data-caption="The little café we loved.">
+
+            <div class="frame">
+
+              <img
+                src=""
+                alt="A memory"
+                loading="lazy"
+                <img src="" alt="A memory" loading="lazy">
+                ">
+
+            </div>
+
+            <figcaption>
+
+              <span class="date">
+                02 October 2025
+              </span>
+
+              <div class="caption">
+                The little café we loved.
+              </div>
+
+            </figcaption>
+
+          </figure>
+
+
+
+          <!-- Memory 3 -->
+
+          <figure
+            class="polaroid"
+            data-img="O3.jpg"
+            data-caption="A perfectly ordinary evening.">
+
+            <div class="frame">
+
+              <img
+                src=""
+                alt="A memory"
+                loading="lazy"
+                <img src="" alt="A memory" loading="lazy">
+              >
+
+            </div>
+
+            <figcaption>
+
+              <span class="date">
+                21 November 2025
+              </span>
+
+              <div class="caption">
+                A perfectly ordinary evening.
+              </div>
+
+            </figcaption>
+
+          </figure>
+
+
+
+          <!-- Memory 4 -->
+
+          <figure
+            class="polaroid"
+            data-img="O4.jpg"
+            data-caption="You, laughing at nothing.">
+
+            <div class="frame">
+
+              <img
+                src=""
+                alt="A memory"
+                loading="lazy"
+                <img src="" alt="A memory" loading="lazy">
+              >
+
+            </div>
+
+            <figcaption>
+
+              <span class="date">
+                05 December 2025
+              </span>
+
+              <div class="caption">
+                You, laughing at nothing.
+              </div>
+
+            </figcaption>
+
+          </figure>
+
+
+
+          <!-- Memory 5 -->
+
+          <figure
+            class="polaroid"
+            data-img="O5.jpg"
+            data-caption="Somewhere new, together.">
+
+            <div class="frame">
+
+              <img
+                src=""
+                alt="A memory"
+                loading="lazy"
+                <img src="" alt="A memory" loading="lazy">
+              >
+
+            </div>
+
+            <figcaption>
+
+              <span class="date">
+                19 January 2026
+              </span>
+
+              <div class="caption">
+                Somewhere new, together.
+              </div>
+
+            </figcaption>
+
+          </figure>
+
+
+
+          <!-- Memory 6 -->
+
+          <figure
+            class="polaroid"
+            data-img="O6.jpg"
+            data-caption="This one, always.">
+
+            <div class="frame">
+
+              <img
+                src=""
+                alt="A memory"
+                loading="lazy"
+                <img src="" alt="A memory" loading="lazy">
+              >
+
+            </div>
+
+            <figcaption>
+
+              <span class="date">
+                08 March 2026
+              </span>
+
+              <div class="caption">
+                This one, always.
+              </div>
+
+            </figcaption>
+
+          </figure>
+
+
+        </div>
+
+
+        <button
+          class="btn-lux next-chapter-btn reveal-line"
+          data-next="special"
+          style="margin-top:38px;">
+          Continue
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAPTER 5 — SPECIAL MEMORIES
+    ====================================================== -->
+
+    <section
+      class="chapter"
+      id="chapter-special"
+      data-tint="lavender">
+
+      <button
+        class="back-btn"
+        onclick="nav.goTo('memories')">
+        ← Back
+      </button>
+
+      <div class="bg-layer"></div>
+
+      <div class="content-inner">
+
+        <div class="carousel-shell">
+
+          <span class="eyebrow reveal-line">
+            Chapter THREE
+          </span>
+
+          <h2 class="carousel-title reveal-line">
+            Special Memories
+          </h2>
+
+          <div
+            class="coverflow"
+            id="special-carousel"
+            aria-label="Special memories photos">
+          </div>
+
+          <p
+            class="dream-caption reveal-line"
+            style="margin-top:22px;">
+            A moment I'll always remember.
+          </p>
+
+          <button
+            class="btn-lux next-chapter-btn reveal-line"
+            data-next="more"
+            style="margin-top:30px;">
+            Continue
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAPTER 6 — MORE MEMORIES
+    ====================================================== -->
+
+    <section
+      class="chapter"
+      id="chapter-more"
+      data-tint="soft-rose">
+
+      <button
+        class="back-btn"
+        onclick="nav.goTo('special')">
+        ← Back
+      </button>
+
+      <div class="bg-layer"></div>
+
+      <div
+        class="content-inner"
+        style="max-width:820px;">
+
+        <span class="eyebrow reveal-line">
+          Chapter FOUR
+        </span>
+
+        <h2
+          class="reveal-line"
+          style="margin-bottom:10px;">
+          More Memories
+        </h2>
+
+        <p
+          class="reveal-line"
+          style="
+            font-family:var(--font-script);
+            color:var(--soft-rose);
+            margin-bottom:20px;
+          ">
+          Okay&hellip; this one still makes me laugh. 😂
+        </p>
+
+        <div
+          class="coverflow"
+          id="more-carousel"
+          aria-label="More memories photos">
+        </div>
+
+        <p class="cf-hint reveal-line">
+          tap a photo to bring it forward
+          &middot;
+          tap again to open
+        </p>
+
+        <button
+          class="btn-lux next-chapter-btn reveal-line"
+          data-next="gift"
+          style="margin-top:30px;">
+          Continue
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAPTER 7 — GIFT
+    ====================================================== -->
+
+    <section
+      class="chapter"
+      id="chapter-gift"
+      data-tint="black-plum">
+
+      <button
+        class="back-btn"
+        onclick="nav.goTo('more')">
+        ← Back
+      </button>
+
+      <div class="bg-layer"></div>
+
+      <div class="content-inner">
+
+
+        <div
+          id="gift-text-seq"
+          class="gift-text-seq">
+
+          <p>
+            Okay&hellip;
+          </p>
+
+          <p>
+            One last thing.
+          </p>
+
+          <p>
+            Wait.
+          </p>
+
+        </div>
+
+
+        <div class="gift-stage">
+
+          <div
+            class="flying-photos"
+            id="flying-photos"
+            aria-hidden="true">
+          </div>
+
+
+          <div
+            class="gift-box"
+            id="gift-box"
+            role="button"
+            tabindex="0"
+            aria-label="Open your gift">
+
+            <div class="gift-glow"></div>
+
+            <div class="gift-bow">
+              🎀
+            </div>
+
+            <div class="gift-lid">
+
+              <div class="gift-ribbon-h"></div>
+
+            </div>
+
+            <div class="gift-base">
+
+              <div class="gift-ribbon-v"></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="gift-hint"
+          id="gift-hint">
+          tap the gift
+        </p>
+
+
+        <button
+          class="btn-lux next-chapter-btn manual"
+          id="gift-continue"
+          data-next="pickgift">
+          Continue
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAPTER 7.5 — PICK A GIFT
+    ====================================================== -->
+
+    <section
+      class="chapter"
+      id="chapter-pickgift"
+      data-tint="black-plum">
+
+      <button
+        class="back-btn"
+        onclick="nav.goTo('gift')">
+        ← Back
+      </button>
+
+      <div
+        class="bg-layer">
+      </div>
+
+      <div
+        class="content-inner"
+        style="max-width:900px;">
+
+        <span class="eyebrow reveal-line">
+          One Last Thing
+        </span>
+
+        <h2
+          class="reveal-line"
+          style="margin-bottom:10px;">
+          Pick a Gift
+        </h2>
+
+        <p class="reveal-line pick-gift-sub">
+          Four little boxes. Choose the one that calls to you.
+        </p>
+
+
+        <div
+          class="pick-gift-grid reveal-line"
+          id="pick-gift-grid">
+
+
+          <!-- Gift 1 -->
+
+          <div
+            class="mini-gift"
+            data-gift="1"
+            role="button"
+            tabindex="0"
+            aria-label="Open gift box one">
+
+            <div class="gift-glow"></div>
+
+            <div class="gift-bow">
+              🎀
+            </div>
+
+            <div class="gift-lid">
+              <div class="gift-ribbon-h"></div>
+            </div>
+
+            <div class="gift-base">
+              <div class="gift-ribbon-v"></div>
+            </div>
+
+          </div>
+
+
+
+          <!-- Gift 2 -->
+
+          <div
+            class="mini-gift"
+            data-gift="2"
+            role="button"
+            tabindex="0"
+            aria-label="Open gift box two">
+
+            <div class="gift-glow"></div>
+
+            <div class="gift-bow">
+              🎀
+            </div>
+
+            <div class="gift-lid">
+              <div class="gift-ribbon-h"></div>
+            </div>
+
+            <div class="gift-base">
+              <div class="gift-ribbon-v"></div>
+            </div>
+
+          </div>
+
+
+
+          <!-- Gift 3 -->
+
+          <div
+            class="mini-gift"
+            data-gift="3"
+            role="button"
+            tabindex="0"
+            aria-label="Open gift box three">
+
+            <div class="gift-glow"></div>
+
+            <div class="gift-bow">
+              🎀
+            </div>
+
+            <div class="gift-lid">
+              <div class="gift-ribbon-h"></div>
+            </div>
+
+            <div class="gift-base">
+              <div class="gift-ribbon-v"></div>
+            </div>
+
+          </div>
+
+
+
+          <!-- Gift 4 -->
+
+          <div
+            class="mini-gift"
+            data-gift="4"
+            role="button"
+            tabindex="0"
+            aria-label="Open gift box four">
+
+            <div class="gift-glow"></div>
+
+            <div class="gift-bow">
+              🎀
+            </div>
+
+            <div class="gift-lid">
+              <div class="gift-ribbon-h"></div>
+            </div>
+
+            <div class="gift-base">
+              <div class="gift-ribbon-v"></div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="gift-hint reveal-line"
+          id="pick-gift-hint">
+          tap a box to open it
+        </p>
+
+
+        <div
+          class="pick-gift-reveal"
+          id="pick-gift-reveal">
+
+          <div
+            class="surprise-frame"
+            id="pick-gift-frame">
+
+            <img
+              id="pick-gift-img"
+              alt="Your gift">
+
+          </div>
+
+          <p
+            class="surprise-msg"
+            id="pick-gift-msg">
+            You picked well. ❤️
+          </p>
+
+        </div>
+
+
+        <button
+          class="btn-lux next-chapter-btn reveal-line manual"
+          id="pickgift-continue"
+          data-next="final">
+          Continue
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CHAPTER 8 — FINAL
+    ====================================================== -->
+
+    <section
+      class="chapter"
+      id="chapter-final"
+      data-tint="black-plum">
+
+      <button
+        class="back-btn"
+        onclick="nav.goTo('pickgift')">
+        ← Back
+      </button>
+
+      <div class="bg-layer"></div>
+
+      <div class="content-inner">
+
+
+        <svg
+          class="ornament reveal-line"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true">
+
+          <path
+            d="M12 21s-7.2-4.6-10-9.3C.4 8.6 2 5 5.4 5c2 0 3.4 1.1 4.1 2.4C10.2 6.1 11.6 5 13.6 5 17 5 18.6 8.6 17 11.7 14.2 16.4 7 21 7 21z">
+          </path>
+
+        </svg>
+
+
+        <h1 class="reveal-line">
+         Happy Birthday My Girl
+        </h1>
+
+
+        <div class="final-heart reveal-line">
+          ❤️
+        </div>
+
+
+        <div class="final-lines">
+
+          <p class="reveal-line">
+            I don't know how to put everything I feel into a few words&hellip;
+          </p>
+
+          <p class="reveal-line">
+            But I hope this little surprise reminds you how special you are to me.
+          </p>
+
+          <p class="reveal-line">
+            Every memory we've made has become something I'll always treasure.
+          </p>
+
+          <p class="reveal-line">
+            Happy Birthday to my Sweetheart, who makes ordinary moments feel extraordinary. ❤️
+          </p>
+
+        </div>
+
+
+        <button
+          class="btn-lux reveal-line"
+          id="final-surprise-btn"
+          style="margin-top:20px;">
+          One More Surprise
+        </button>
+
+
+        <div id="final-surprise-reveal">
+
+          <div
+            class="surprise-frame"
+            id="surprise-frame">
+
+            <img
+              id="special-photo"
+              alt="One more memory"
+              loading="lazy"
+              onerror="
+                this.closest('.surprise-frame').innerHTML =
+                '<div class=&quot;cf-fallback&quot;>A Memory ❤️</div>'
+              ">
+
+          </div>
+
+
+          <p
+            class="surprise-msg"
+            id="surprise-msg">
+            And yes&hellip; you're still stuck with me. 😂❤️
+          </p>
+
+
+          <button
+            class="btn-lux next-chapter-btn reveal-line"
+            id="final-continue"
+            data-next="intro">
+            Restart
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FULL SCREEN PHOTO VIEWER
+  ====================================================== -->
+
+  <div
+    class="story-viewer"
+    id="story-viewer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Photo story viewer">
+  </div>
+
+
+
+  <!-- =====================================================
+       SUPABASE
+  ====================================================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- =====================================================
+       YOUR JAVASCRIPT
+  ====================================================== -->
+
+  <script src="script.js"></script>
+
+</body>
+</html>
