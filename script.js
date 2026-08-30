@@ -59,6 +59,13 @@ async function loadCustomerData() {
     }
 
     console.log("✅ Customer data loaded:", customer);
+    const titleEl = document.getElementById("final_title");
+
+if (titleEl) {
+  titleEl.textContent = customer.final_title;
+  titleEl.classList.add("shown");
+}
+
 
 
     // Customer Name
@@ -126,7 +133,7 @@ if (Array.isArray(customer.memory_captions)) {
 
         });
 }
-
+   
 
     // Final Letter
     if (Array.isArray(customer.final_letter)) {
