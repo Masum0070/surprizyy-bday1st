@@ -293,7 +293,7 @@ h1,h2,h3{ font-family:var(--font-display); font-weight:600; letter-spacing:.01em
   position:absolute;
   top:50%; left:50%;
   width:min(52vw, 240px);
-  aspect-ratio:1/1;
+  aspect-ratio:4/5;
   border-radius:14px;
   overflow:hidden;
   box-shadow:0 20px 50px rgba(0,0,0,.55);
@@ -536,10 +536,26 @@ h1,h2,h3{ font-family:var(--font-display); font-weight:600; letter-spacing:.01em
 .skip-hidden{ display:none !important; }
 
 @media (max-width: 480px){
-  .glass-card{ padding:36px 22px; border-radius:18px; }
-  .chapter{ padding:48px 14px; }
-  .cf-card{ width:min(52vw,210px); }
-  .coverflow{ height:min(58vw,230px); }
+
+  .cf-card{
+    width: 220px;
+    height: 290px;
+  }
+
+  .coverflow{
+    height: 280px;
+  }
+
+  .polaroid .frame{
+    width: 150px;
+    height: 165px;
+  }
+
+  .playful-card{
+    width: 140px;
+    height: 210px;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce){
