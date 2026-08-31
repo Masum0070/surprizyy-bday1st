@@ -42,7 +42,10 @@ if (!CUSTOMER_ID) {
 
 async function loadCustomerData() {
 
-  if (!CUSTOMER_ID) return;
+  if (!CUSTOMER_ID) {
+  showInvalidLink();
+  return;
+}
 
   try {
 
@@ -52,11 +55,11 @@ async function loadCustomerData() {
       p_customer_id: CUSTOMER_ID
     });
 
-    if (error) {
-      console.error("❌ Customer data error:", error);
-      console.error("Full error:", JSON.stringify(error, null, 2));
-      return;
-    }
+    if (error || !customer) {
+  console.error("❌ Invalid customer link:", error);
+  showInvalidLink();
+  return;
+}
 
     console.log("✅ Customer data loaded:", customer);
     const titleEl = document.getElementById("final_title");
@@ -64,6 +67,7 @@ async function loadCustomerData() {
 if (titleEl) {
   titleEl.textContent = customer.final_title;
   titleEl.classList.add("shown");
+  
 }
 
 
@@ -166,6 +170,35 @@ if (Array.isArray(customer.memory_captions)) {
 }
 
 loadCustomerData();
+loadCustomerData();
+
+function showInvalidLink() {
+  document.body.innerHTML = `
+    <div style="
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#0D0711;
+      color:#FFF8F0;
+      text-align:center;
+      font-family:Arial,sans-serif;
+      padding:30px;
+    ">
+      <div>
+        <div style="font-size:50px;margin-bottom:20px;">🎁</div>
+
+        <h1 style="color:#F1D38A;">
+          Invalid or Expired Link
+        </h1>
+
+        <p style="opacity:.7;">
+          This surprise link is not available.
+        </p>
+      </div>
+    </div>
+  `;
+}
 
 /* ==================== PHOTO URL ==================== */
 
@@ -2798,6 +2831,32 @@ musicPlayer.loadMusic();
 
       const n =
         box.dataset.gift;
+        // Record which gift was opened
+try {
+  const { error } = await supabaseClient
+    .from("gift_opens")
+    .insert({
+      customer_id: CUSTOMER_ID,
+      gift_id: `gift${n}`
+    });
+
+  if (error) {
+    console.error(
+      "Gift tracking failed:",
+      error
+    );
+  } else {
+    console.log(
+      `🎁 Gift ${n} opened`
+    );
+  }
+
+} catch (err) {
+  console.error(
+    "Gift tracking error:",
+    err
+  );
+}
 
 
       if (hint)
