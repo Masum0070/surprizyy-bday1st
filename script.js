@@ -506,7 +506,7 @@ async function getPhotoUrl(filename) {
 
 
  /* =========================================================
-   2. MUSIC — SUPABASE CUSTOMER MUSIC
+   2. MUSIC — SINGLE SONG THROUGHOUT WEBSITE
 ========================================================= */
 
 class MusicPlayer {
@@ -516,19 +516,20 @@ class MusicPlayer {
     this.audio = audioEl;
     this.btn = btnEl;
 
-    this.song1 = "";
-    this.song2 = "";
-    this.currentSong = "";
+    this.song = "";
+    this.started = false;
 
     if (!this.audio || !this.btn) return;
 
     this.audio.volume = 0.45;
 
+    /* Music button */
     this.btn.addEventListener("click", (e) => {
       e.stopPropagation();
       this.toggle();
     });
 
+    /* Update icon */
     this.audio.addEventListener("play", () => {
       this._updateIcon();
     });
@@ -538,11 +539,37 @@ class MusicPlayer {
     });
 
     this._updateIcon();
+
+    /* =========================================
+       START MUSIC ON FIRST USER CLICK ANYWHERE
+    ========================================= */
+
+    document.addEventListener(
+      "click",
+      () => {
+
+        if (this.started || !this.song) return;
+
+        this.started = true;
+
+        this.audio.play()
+          .then(() => {
+            console.log("🎵 Music started");
+          })
+          .catch((err) => {
+            console.log("🔇 Music could not start:", err);
+            this.started = false;
+          });
+
+      },
+      { once: true }
+    );
+
   }
 
 
   /* =========================
-     LOAD BOTH SONGS
+     LOAD SINGLE SONG
   ========================= */
 
   async loadMusic() {
@@ -556,98 +583,69 @@ class MusicPlayer {
         params.get("id");
 
       if (!customerId) {
+
         console.error("❌ Customer ID missing");
         return;
+
       }
 
 
-      const song1Path =
+      /* ONLY SONG 1 */
+
+      const songPath =
         `birthday-surprises/${customerId}/song1.mp3`;
 
-      const song2Path =
-        `birthday-surprises/${customerId}/song2.mp3`;
+
+      console.log("🎵 Loading music:", songPath);
 
 
-      console.log("🎵 Loading Song 1:", song1Path);
-      console.log("🎵 Loading Song 2:", song2Path);
+      const response =
+        await supabaseClient
+          .storage
+          .from("files-main")
+          .createSignedUrl(
+            songPath,
+            3600
+          );
 
-
-      const [song1Response, song2Response] =
-        await Promise.all([
-
-          supabaseClient
-            .storage
-            .from("files-main")
-            .createSignedUrl(
-              song1Path,
-              3600
-            ),
-
-          supabaseClient
-            .storage
-            .from("files-main")
-            .createSignedUrl(
-              song2Path,
-              3600
-            )
-
-        ]);
-
-
-      /* SONG 1 */
 
       if (
-        song1Response.error ||
-        !song1Response.data?.signedUrl
+        response.error ||
+        !response.data?.signedUrl
       ) {
 
         console.error(
-          "❌ Song 1 error:",
-          song1Response.error
+          "❌ Music error:",
+          response.error
         );
 
-      } else {
-
-        this.song1 =
-          song1Response.data.signedUrl;
-
-        console.log("✅ Song 1 loaded");
+        return;
 
       }
 
 
-      /* SONG 2 */
-
-      if (
-        song2Response.error ||
-        !song2Response.data?.signedUrl
-      ) {
-
-        console.error(
-          "❌ Song 2 error:",
-          song2Response.error
-        );
-
-      } else {
-
-        this.song2 =
-          song2Response.data.signedUrl;
-
-        console.log("✅ Song 2 loaded");
-
-      }
+      this.song =
+        response.data.signedUrl;
 
 
-      // Start with NO music
-      this.audio.pause();
-      this.audio.removeAttribute("src");
+      console.log("✅ Song 1 loaded");
+
+
+      /* Set song but DO NOT PLAY yet */
+
+      this.audio.src = this.song;
+
+      this.audio.loop = true;
+
+      this.audio.load();
+
       this._updateIcon();
 
 
     } catch (err) {
 
       console.error(
-        "❌ Music error:",
+        "❌ Music loading error:",
         err
       );
 
@@ -657,115 +655,21 @@ class MusicPlayer {
 
 
   /* =========================
-     CHANGE SONG BY CHAPTER
+     CHAPTER CHANGE
+     
+     IMPORTANT:
+     DO NOTHING.
+     SAME SONG CONTINUES.
   ========================= */
 
   setChapter(chapterId) {
 
-    /* PAGE 1 + PAGE 2
-       NO MUSIC
-    */
+    console.log(
+      "🎵 Chapter changed:",
+      chapterId,
+      "— keeping same song"
+    );
 
-    if (
-      chapterId === "intro" ||
-      chapterId === "letter"
-    ) {
-
-      this.audio.pause();
-
-      this.currentSong = "";
-
-      this.audio.removeAttribute("src");
-
-      this._updateIcon();
-
-      return;
-    }
-
-
-    /* PAGE 3
-       SONG 1
-    */
-
-    if (chapterId === "wishes") {
-
-      if (!this.song1) return;
-
-      this.changeSong(
-        this.song1
-      );
-
-      this.audio.play()
-    .then(() => {
-      console.log("🎵 Song 1 started");
-    })
-    .catch(() => {
-      console.log("🔇 Autoplay blocked");
-    });
-
-      return;
-    }
-
-
-    /* PAGE 4 → LAST
-       SONG 2
-    */
-
-    if (
-      chapterId === "memories" ||
-      chapterId === "special" ||
-      chapterId === "more" ||
-      chapterId === "gift" ||
-      chapterId === "pickgift" ||
-      chapterId === "final"
-    ) {
-
-      if (!this.song2) return;
-
-      this.changeSong(
-        this.song2
-      );
-
-    }
-
-  }
-
-
-  /* =========================
-     CHANGE SONG
-  ========================= */
-
-  changeSong(url) {
-
-    const wasPlaying =
-      !this.audio.paused;
-
-    // Don't reload same song
-    if (this.currentSong === url) {
-      return;
-    }
-
-    this.currentSong = url;
-
-    this.audio.pause();
-
-    this.audio.src = url;
-
-    this.audio.load();
-
-    if (wasPlaying) {
-
-      this.audio.play()
-        .catch(err => {
-          console.error(
-            "❌ Play error:",
-            err
-          );
-        });
-
-    }
-
-    this._updateIcon();
   }
 
 
@@ -775,14 +679,24 @@ class MusicPlayer {
 
   toggle() {
 
+    if (!this.song) return;
+
+
     if (this.audio.paused) {
 
       this.audio.play()
-        .catch(err => {
+        .then(() => {
+
+          this.started = true;
+
+        })
+        .catch((err) => {
+
           console.error(
             "❌ Play error:",
             err
           );
+
         });
 
     } else {
